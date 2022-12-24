@@ -1,17 +1,20 @@
 #!/usr/bin/python3
-""" Return a list of integers repersenting the Pascal's triangl"""
+""" Pascal Triangle """
 
 
 def pascal_triangle(n):
+    """calculate pascal, return list"""
+    pascal_list = []
+
     if n <= 0:
-        return
-    Triangle = [[1]]
-    for R in range(1, n):
-        NewValue = [1]
-        for C in range(1, R):
-            numOne = Triangle[R - 1][C - 1]
-            numTwo = Triangle[R - 1][C]
-            NewValue.append(numOne + numTwo)
-        NewValue.append(1)
-        Triangle.append(NewValue)
-    return Triangle
+        return pascal_list
+
+    for i in range(n):
+        temp_list = []
+        for j in range(i + 1):
+            if (j == 0 or j == i):
+                temp_list.append(1)
+            else:
+                temp_list.append(pascal_list[i-1][j-1] + pascal_list[i-1][j])
+        pascal_list.append(temp_list)
+    return pascal_list
